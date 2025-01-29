@@ -7,4 +7,4 @@ This repository contains the project files, code, and notebooks for the Video Tr
 ### Team
 
 - Umar Faruk Abdullahi
-- Raixa Aurora
+- Raixa Madueño
