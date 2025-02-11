@@ -51,7 +51,7 @@ def setup_gesture_recognizer():
     return vision.GestureRecognizer.create_from_options(options)
 
 
-def detect_initial_point(frame, gesture_recognizer):
+def detect_keypoint(frame, gesture_recognizer):
     """Process frame to detect pointing gesture and get index fingertip"""
     # Convert the frame to RGB format
     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
