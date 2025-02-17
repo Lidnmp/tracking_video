@@ -88,7 +88,3 @@ The full step-by-step tutorial is provided in the project [Notebook](./Hand-Trac
 - [MediaPipe](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker#get_started)
 - [Google Gemini Model](https://ai.google.dev/gemini-api/docs/vision?lang=python)
 - [Machine Learning Space](https://machinelearningspace.com/2d-object-tracking-using-kalman-filter/)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
