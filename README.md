@@ -1,4 +1,4 @@
-# Video Tracking Project
+# AirWrite: Writing using the Camera
 
 ## MUSI Image and Video Analysis
 
@@ -18,9 +18,7 @@ In the field of Human-Computer Interaction (HCI), the quest for more intuitive a
 To solve this problem, we rely on object tracking. Object tracking is a computer vision task that involves locating and following one or more objects over time within a video sequence. The primary goal is to determine the trajectory of an object as it moves through scenes, maintaining its identity as it moves across the frames. To achieve this, we follow the steps below:
 
 1. **Detection:** The first task is to correctly identify the desired object of interest to track. In our case, the `tip of index finger`. This is achieved using the [MediaPipe library](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker#get_started) which is an open-source tool that allows hand tracking and gesture recognition.
-2. **Tracking:** After correctly detecting the point of interest, we use a tracking algorithm to follow the point of interest as it moves across frames thereby accumulating the trajectory. Two algorithms were used in the project:
-   1. Kalman Filters
-   2. Mean Shift
+2. **Tracking:** After correctly detecting the point of interest, we use a tracking algorithm to follow the point of interest as it moves across frames thereby accumulating the trajectory using the Kalman Filter.
 3. **Correction:** As the finger moves across frames, we correct our tracking error by providing the correct location of the finger at the subsequent frame. This can be directly incorporated within the tracking algorithm or made additional object detection. In our project, we rely on the tracking algorithm.
 4. **Handwriting Recognition:** After every subsequent word is written, we run the captured frame through an optical character recognition (OCR) model to extract the written text. We use the [Google Gemini Model](https://ai.google.dev/gemini-api/docs/vision?lang=python) for the OCR.
 
@@ -71,7 +69,7 @@ The full step-by-step tutorial is provided in the project [Notebook](./Hand-Trac
 1. Run the Jupyter Notebook:
 
     ```sh
-    jupyter notebook [Hand-Tracking-Pipeline.ipynb](http://_vscodecontentref_/1)
+    jupyter notebook [Hand-Tracking-Pipeline.ipynb](./Hand-Tracking-Pipeline.ipynb)
     ```
 
 2. Follow the steps in the notebook to initialize the gesture recognizer, set up the Kalman filter, and start the tracking process.

@@ -11,20 +11,11 @@ from PIL import Image as PILImage
 import io
 
 
-def display_jupyter(frame, processed=None):
+def display_jupyter(processed):
     """Display frame(s) in Jupyter notebook"""
-
-    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-
-    # Display side by side if we have two frames
-    if processed is not None:
-
-        processed_rgb = cv2.cvtColor(processed, cv2.COLOR_BGR2RGB)
-
-        combined = np.hstack((rgb_frame, processed_rgb))
-        pil_img = PILImage.fromarray(combined)
-    else:
-        pil_img = PILImage.fromarray(rgb_frame)
+    
+    processed_rgb = cv2.cvtColor(processed, cv2.COLOR_BGR2RGB)
+    pil_img = PILImage.fromarray(processed_rgb)
 
     # Create binary stream
     bio = io.BytesIO()
@@ -34,14 +25,25 @@ def display_jupyter(frame, processed=None):
     clear_output(wait=True)  # Clear previous frame
 
 
-def display_cv2(frame, processed=None):
+def display_cv2(processed):
     """Display frame(s) using OpenCV window"""
-    if processed is not None:
-        # Stack frames horizontally
-        combined = np.hstack((frame, processed))
-        cv2.imshow("Video Feed", combined)
-    else:
-        cv2.imshow("Video Feed", frame)
+    cv2.imshow("Video Feed", processed)
+    
+def create_video_saver(filename, frame_size, fps=30, codec='H264'):
+    """Creates a VideoWriter using the provided filename, fps, and codec,
+    and returns a function that writes frames to the video file.
+    """
+    
+    fourcc = cv2.VideoWriter_fourcc(*codec)
+    writer = cv2.VideoWriter(filename, fourcc, fps, frame_size)
+    
+    def save_frame(frame_to_save):
+        writer.write(frame_to_save)
+    
+    # Attaching the release method to the save_frame function to enable cleanup
+    save_frame.release = writer.release
+    
+    return save_frame
 
 
 def setup_gesture_recognizer():

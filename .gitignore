@@ -4,3 +4,4 @@ pyproject.toml
 uv.lock
 .venv/*
 hand_tracking.mp4
+output/*
